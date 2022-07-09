@@ -5,18 +5,8 @@
 (defparameter *world-width* 400)
 (defparameter *world-height* 400)
 
-(defclass world ()
-  ((turtles :initform '() :accessor turtles)))
 
-(defgeneric add-turtle (world))
-(defmethod add-turtle ((w world))
-  (push (make-instance 'turtle) (turtles w)))
-
-(let ((+world+ nil))
-  (defun ensure-world ()
-    (when (not +world+)
-      (setf +world+ (make-instance 'world)))
-    +world+))
+;; World monitor
 
 (defsketch world-monitor ((width *world-width*)
                           (height *world-height*)
@@ -27,7 +17,3 @@
                             (turtles world))) 10 10))
   (loop for turtle in (turtles world)
         do (display sketch::instance turtle)))
-
-(defun display-world (frame pane)
-  (loop for turtle in (turtles frame)
-        do (display pane turtle)))

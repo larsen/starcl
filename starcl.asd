@@ -8,5 +8,6 @@
   :serial t
   :depends-on (#:sketch)
   :components ((:file "package")
+               (:file "world")
                (:file "starcl")
                (:file "turtles")))
