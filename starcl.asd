@@ -6,7 +6,7 @@
   :license  "Specify license here"
   :version "0.0.1"
   :serial t
-  :depends-on (#:mcclim)
+  :depends-on (#:sketch)
   :components ((:file "package")
                (:file "starcl")
                (:file "turtles")))

@@ -17,15 +17,14 @@
   (* degree (/ pi 180)))
 
 (defgeneric display (canvas entity))
-(defmethod display (canvas (turtle turtle))
-  ;; TODO fix glitch in representation
-  (with-output-as-presentation (canvas turtle 'turtle)
-    (let* ((heading (deg->rad (heading turtle)))
-           (heading-length 10)
-           (heading-x (+ (x turtle) (* heading-length (cos heading))))
-           (heading-y (+ (y turtle) (* heading-length (sin heading)))))
-      (draw-circle* canvas (x turtle) (y turtle) 3 :ink +brown+)
-      (draw-line* canvas (x turtle) (y turtle) heading-x heading-y :ink +brown+))))
+
+(defmethod display ((canvas sketch) (trt turtle))
+  (let* ((heading (deg->rad (heading trt)))
+         (heading-length 50)
+         (heading-x (+ (x trt) (* heading-length (cos heading))))
+         (heading-y (+ (y trt) (* heading-length (sin heading)))))
+    (circle (x trt) (y trt) 2)
+    (line (x trt) (y trt) heading-x heading-y)))
 
 (defun within-boundaries-p (x y)
   (and (> x 0) (< x *world-width*)
