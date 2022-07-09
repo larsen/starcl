@@ -3,8 +3,8 @@
 (defclass world ()
   ((turtles :initform '() :accessor turtles)))
 
-(defgeneric add-turtle (world))
-(defmethod add-turtle ((w world))
+(defgeneric %add-turtle (world))
+(defmethod %add-turtle ((w world))
   (push (make-instance 'turtle) (turtles w)))
 
 (let ((+world+ nil))

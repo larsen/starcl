@@ -11,7 +11,7 @@
                         (loop (progn
                                 (left turtle (random 10))
                                 (right turtle (random 10))
-                                (forward turtle 10)))))))
+                                (%forward turtle 10)))))))
 
 (defun deg->rad (degree)
   (* degree (/ pi 180)))
@@ -30,8 +30,8 @@
   (and (> x 0) (< x *world-width*)
        (> y 0) (< y *world-height*)))
 
-(defgeneric forward (turtle steps))
-(defmethod forward ((turtle turtle) steps)
+(defgeneric %forward (turtle steps))
+(defmethod %forward ((turtle turtle) steps)
   (let* ((heading (deg->rad (heading turtle)))
          (dest-x (+ (x turtle) (* steps (cos heading))))
          (dest-y (+ (y turtle) (* steps (sin heading)))))
@@ -39,12 +39,12 @@
       (setf (x turtle) dest-x)
       (setf (y turtle) dest-y))))
 
-(defgeneric left (turtle degree))
-(defmethod left ((turtle turtle) degree)
+(defgeneric %left (turtle degree))
+(defmethod %left ((turtle turtle) degree)
   (incf (heading turtle) (* degree -1)))
 
-(defgeneric right (turtle degree))
-(defmethod right ((turtle turtle) degree)
+(defgeneric %right (turtle degree))
+(defmethod %right ((turtle turtle) degree)
   (incf (heading turtle) degree))
 
 (defgeneric run-program (entity))
