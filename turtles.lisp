@@ -9,8 +9,8 @@
             :accessor program
             :initform (lambda (turtle)
                         (loop (progn
-                                (left turtle (random 10))
-                                (right turtle (random 10))
+                                (%left turtle (random 10))
+                                (%right turtle (random 10))
                                 (%forward turtle 10)))))))
 
 (defun deg->rad (degree)
