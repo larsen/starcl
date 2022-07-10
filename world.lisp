@@ -7,6 +7,10 @@
 (defmethod %add-turtle ((w world))
   (push (make-instance 'turtle) (turtles w)))
 
+(defgeneric clearall (world))
+(defmethod clearall ((w world))
+  (setf (turtles w) '()))
+
 (let ((+world+ nil))
   (defun ensure-world ()
     (when (not +world+)
