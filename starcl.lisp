@@ -34,19 +34,29 @@
 (defun add-turtle ()
   (%add-turtle (ensure-world)))
 
-(defun forward (n)
-  (loop for turtle in (turtles (ensure-world))
-        do (%forward turtle n)))
+(defmacro forward (n)
+  `(loop for turtle in (turtles (ensure-world))
+         do (%forward turtle ,n)))
 
-(defun left (n)
-  (loop for turtle in (turtles (ensure-world))
-        do (%left turtle n)))
+(defmacro left (n)
+  `(loop for turtle in (turtles (ensure-world))
+         do (%left turtle ,n)))
 
-(defun right (n)
-  (loop for turtle in (turtles (ensure-world))
-        do (%right turtle n)))
-
-
+(defmacro right (n)
+  `(loop for turtle in (turtles (ensure-world))
+         do (%right turtle ,n)))
 
 (defun run ()
   (make-instance 'world-monitor))
+
+
+;; example "script"
+
+(defun example ()
+  ;; Setup
+  (clearall (ensure-world))
+  (loop repeat 100
+        do (add-turtle))
+  ;; Main loop
+  (loop do (left (random 15))
+           (forward 0.50)))
