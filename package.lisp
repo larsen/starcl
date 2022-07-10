@@ -1,4 +1,4 @@
 ;;;; package.lisp
 
 (defpackage #:starcl
-  (:use #:cl #:sketch))
+  (:use #:cl #:sketch #:temporal-functions))

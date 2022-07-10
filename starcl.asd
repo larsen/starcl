@@ -6,7 +6,7 @@
   :license  "Specify license here"
   :version "0.0.1"
   :serial t
-  :depends-on (#:sketch)
+  :depends-on (#:sketch #:temporal-functions)
   :components ((:file "package")
                (:file "world")
                (:file "starcl")
