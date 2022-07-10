@@ -34,17 +34,20 @@
 (defun add-turtle ()
   (%add-turtle (ensure-world)))
 
-(defmacro forward (n)
+
+(defmacro broadcasting (method &rest args)
   `(loop for turtle in (turtles (ensure-world))
-         do (%forward turtle ,n)))
+         do (funcall ,method turtle ,@args)))
+
+(defmacro forward (n)
+  `(broadcasting #'%forward ,n))
 
 (defmacro left (n)
-  `(loop for turtle in (turtles (ensure-world))
-         do (%left turtle ,n)))
+  `(broadcasting #'%left ,n))
 
 (defmacro right (n)
-  `(loop for turtle in (turtles (ensure-world))
-         do (%right turtle ,n)))
+  `(broadcasting #'%right ,n))
+
 
 (defun run ()
   (make-instance 'world-monitor))
